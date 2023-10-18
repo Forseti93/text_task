@@ -9,14 +9,29 @@ input.addEventListener("input", (e) => {
   console.log(inpVal);
 });
 
-// TODO: animate video
+// TODO: +animate video
+// - FIX: to make calculations every 100ms, not 1ms
+const startTimeout = () => {
+  canCalculate = false;
+  const makeCalculations = setTimeout(() => {
+    canCalculate = true;
+    console.log("timeout fired");
+  }, calculationPause);
+};
+let canCalculate = true;
+const calculationPause = 100;
+// ENDFIX
+
 const imgMoveCoef = 50;
 const orbitWrapper = document.querySelector(".wrapper");
 document.addEventListener("mousemove", (e) => {
+  if (!canCalculate) return; // for debounce
   const x = e.clientX / imgMoveCoef;
   const y = e.clientY / imgMoveCoef;
   orbitWrapper.style.transform = `translate(${x}px, ${y}px)`;
-  console.log(`translate(${x}, ${y})`);
+
+  if (typeof makeCalculations === "undefined") startTimeout(); //for debounce
+  console.log("calculations"); //for debounce
 });
 
 /* const cutToMainDomain = (URL) => {

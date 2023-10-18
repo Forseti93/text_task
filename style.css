@@ -13,6 +13,10 @@ span:after {
   height: 50svh;
   background-color: black;
 
+  & .wrapper {
+    transition: transform 300ms;
+  }
+
   & .image {
     color: black;
     background-color: yellow;
@@ -39,9 +43,9 @@ span:after {
 } */
 @keyframes myOrbit {
   from {
-    transform: rotate(0deg) translateX(150px) rotate(0deg);
+    transform: rotate(0deg) translateX(50px) rotate(0deg);
   }
   to {
-    transform: rotate(360deg) translateX(150px) rotate(-360deg);
+    transform: rotate(360deg) translateX(50px) rotate(-360deg);
   }
 }
